@@ -1,0 +1,58 @@
+export const feature = [
+  {
+    id: "Al-Quran",
+    path: "/al-quran",
+    label: "Al-Quran",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Jadwal Sholat",
+    path: "/jadwal-sholat",
+    label: "Jadwal Sholat",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Tasbih",
+    path: "/tasbih",
+    label: "Tasbih",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Kiblat",
+    path: "/kiblat",
+    label: "Kiblat",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Wirid",
+    path: "/wirid",
+    label: "Wirid",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Ibadah",
+    path: "/ibadah",
+    label: "Ibadah",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Kalender",
+    path: "/kalender",
+    label: "Kalender",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    id: "Yasin & Tahlil",
+    path: "/yasin-tahlil",
+    label: "Yasin & Tahlil",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+];

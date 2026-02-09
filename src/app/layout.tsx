@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { type Metadata, type Viewport } from "next";
 import { Geist } from "next/font/google";
+import AppProvider from "~/components/AppProvider";
 
 export const metadata: Metadata = {
   title: "SABDA",
@@ -42,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="bg-[#f1f5f9] pt-[env(safe-area-inset-top)] antialiased">
-        {children}
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
