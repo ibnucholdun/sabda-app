@@ -75,3 +75,26 @@ export const feature = [
     bg: "bg-emerald-50",
   },
 ];
+
+export const STATIC_HIKMAH = [
+  {
+    text: "Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya.",
+    source: "QS. Al-Baqarah: 286",
+  },
+  {
+    text: "Sesungguhnya sesudah kesulitan itu ada kemudahan.",
+    source: "QS. Al-Insyirah: 6",
+  },
+  {
+    text: "Jadikanlah sabar dan shalat sebagai penolongmu.",
+    source: "QS. Al-Baqarah: 45",
+  },
+  {
+    text: "Barangsiapa yang bertaqwa kepada Allah, niscaya Dia akan mengadakan baginya jalan keluar.",
+    source: "QS. At-Talaq: 2",
+  },
+  {
+    text: "Hati yang bersyukur adalah magnet bagi keajaiban.",
+    source: "Hikmah Sabda",
+  },
+];
