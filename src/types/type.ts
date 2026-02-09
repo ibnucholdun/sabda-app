@@ -29,3 +29,36 @@ export interface BigDataCloudLocation {
     longitude: number;
   };
 }
+
+export interface PrayerTimings {
+  Fajr: string;
+  Sunrise: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  Isha: string;
+  Imsak: string;
+}
+
+export interface HijriDate {
+  day: string;
+  month: { en: string; ar: string };
+  year: string;
+  designation: { expanded: string };
+}
+
+export interface PrayerData {
+  timings: PrayerTimings;
+  hijri: HijriDate;
+}
+
+export interface AladhanResponse {
+  code: number;
+  status: string;
+  data: {
+    timings: PrayerTimings;
+    date: {
+      hijri: HijriDate;
+    };
+  };
+}
