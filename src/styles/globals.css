@@ -4,6 +4,12 @@
   :root {
     background-color: #f1f5f9;
   }
+  .prayer-card-gradient {
+    background: linear-gradient(135deg, #065f46 0%, #059669 100%);
+    box-shadow:
+      0 20px 25px -5px rgba(6, 95, 70, 0.2),
+      0 10px 10px -5px rgba(6, 95, 70, 0.1);
+  }
 }
 
 @theme {
