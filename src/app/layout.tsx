@@ -42,7 +42,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body className="bg-[#f1f5f9] pt-[env(safe-area-inset-top)] antialiased">
+      <body className="islamic-pattern bg-[#f1f5f9] pt-[env(safe-area-inset-top)] antialiased">
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

@@ -8,6 +8,7 @@ import {
   Calendar,
   BookOpen,
 } from "lucide-react";
+import type { TopicItem } from "~/types/type";
 
 export const feature = [
   {
@@ -96,5 +97,41 @@ export const STATIC_HIKMAH = [
   {
     text: "Hati yang bersyukur adalah magnet bagi keajaiban.",
     source: "Hikmah Sabda",
+  },
+];
+
+export const topics: TopicItem[] = [
+  {
+    id: "1",
+    title: "Kumpulan Khutbah Bulan Sya'ban",
+    imageUrl: "https://picsum.photos/seed/topic1/300/200",
+  },
+  {
+    id: "2",
+    title: "Amalan Malam Nisfu Sya'ban",
+    imageUrl: "https://picsum.photos/seed/topic2/300/200",
+  },
+  {
+    id: "3",
+    title: "Persiapan Menyambut Ramadhan",
+    imageUrl: "https://picsum.photos/seed/topic3/300/200",
+  },
+];
+
+export const recommendations: TopicItem[] = [
+  {
+    id: "1",
+    title: "Doa Malam Nisfu Sya'ban",
+    imageUrl: "https://picsum.photos/seed/rec1/300/200",
+  },
+  {
+    id: "2",
+    title: "Dzikir Penenang Hati",
+    imageUrl: "https://picsum.photos/seed/rec2/300/200",
+  },
+  {
+    id: "3",
+    title: "Kisah Sahabat Nabi",
+    imageUrl: "https://picsum.photos/seed/rec3/300/200",
   },
 ];

@@ -62,3 +62,17 @@ export interface AladhanResponse {
     };
   };
 }
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  category: string;
+  imageUrl: string;
+  timestamp: string;
+}
+
+export interface TopicItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+}
