@@ -1,3 +1,4 @@
+import { size } from "better-auth";
 import {
   Book,
   Clock,
@@ -7,6 +8,8 @@ import {
   ClipboardCheck,
   Calendar,
   BookOpen,
+  Home,
+  Settings,
 } from "lucide-react";
 import type { TopicItem } from "~/types/type";
 
@@ -54,7 +57,7 @@ export const feature = [
   {
     id: "Ibadah",
     path: "/ibadah",
-    label: "Ibadah",
+    label: "Ibadah Tracker",
     icon: ClipboardCheck,
     color: "text-emerald-600",
     bg: "bg-emerald-50",
@@ -133,5 +136,23 @@ export const recommendations: TopicItem[] = [
     id: "3",
     title: "Kisah Sahabat Nabi",
     imageUrl: "https://picsum.photos/seed/rec3/300/200",
+  },
+];
+
+export const tabs = [
+  { id: "Beranda", path: "/", icon: Home, label: "Beranda" },
+  { id: "Al-Quran", path: "/al-quran", icon: BookOpen, label: "Al-Quran" },
+  {
+    id: "Ibadah",
+    path: "/ibadah",
+    icon: ClipboardCheck,
+    label: "Ibadah",
+  },
+  { id: "Kalender", path: "/kalender", icon: Calendar, label: "Kalender" },
+  {
+    id: "Pengaturan",
+    path: "/pengaturan",
+    icon: Settings,
+    label: "Pengaturan",
   },
 ];

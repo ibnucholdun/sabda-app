@@ -68,15 +68,16 @@ const ContentSection: React.FC<ContentSectionProps> = ({
           {items.map((item) => (
             <div
               key={item.id}
-              className="w-64 flex-shrink-0 cursor-pointer transition-transform active:scale-[0.98]"
+              className="w-64 shrink-0 cursor-pointer transition-transform active:scale-[0.98]"
             >
-              <div className="relative mb-2 h-44 overflow-hidden rounded-[2rem] shadow-lg">
-                <img
+              <div className="relative mb-2 h-44 overflow-hidden rounded-4xl shadow-lg">
+                <Image
                   src={item.imageUrl}
                   alt={item.title}
                   className="h-full w-full object-cover transition-transform duration-700"
+                  fill
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
 
                 {isVideo && (
                   <div className="absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-black tracking-widest text-white uppercase shadow-lg">

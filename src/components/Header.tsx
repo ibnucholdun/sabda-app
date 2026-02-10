@@ -14,11 +14,14 @@ const Header = () => {
   const { locationName } = useSelector((state: RootState) => state.location);
 
   const isFeaturePage = feature.some((f) => pathname === f.path);
+  const isSettingPage = pathname === "/pengaturan";
   const isQuranPage = pathname === "/al-quran";
   const isHomePage = pathname === "/";
   const featureName = isFeaturePage
     ? feature.find((f) => f.path === pathname)?.label
-    : null;
+    : isSettingPage
+      ? "Pengaturan"
+      : null;
 
   return (
     <header className="z-20 flex flex-none items-center justify-between rounded-b-4xl bg-emerald-800 px-5 py-4 text-white shadow-lg">
