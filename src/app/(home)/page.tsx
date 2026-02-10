@@ -2,6 +2,7 @@ import React from "react";
 import PrayerCard from "./_components/PrayerCard";
 import MenuGrid from "./_components/MenuGrid";
 import QuoteSection from "./_components/QuoteSection";
+import HolydayBanner from "./_components/HolydayBanner";
 
 const HomeView: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const HomeView: React.FC = () => {
       <PrayerCard />
       <MenuGrid />
       <QuoteSection />
+      <HolydayBanner />
     </div>
   );
 };
