@@ -14,7 +14,8 @@ export const env = createEnv({
     // BETTER_AUTH_GITHUB_CLIENT_ID: z.string(),
     // BETTER_AUTH_GITHUB_CLIENT_SECRET: z.string(),
     // DATABASE_URL: z.string().url(),
-    GEMINI_API_KEY: z.string(),
+    GOOGLE_API_KEY: z.string(),
+    GROQ_API_KEY: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -40,7 +41,8 @@ export const env = createEnv({
     // BETTER_AUTH_GITHUB_CLIENT_SECRET:
     //   process.env.BETTER_AUTH_GITHUB_CLIENT_SECRET,
     // DATABASE_URL: process.env.DATABASE_URL,
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    GROQ_API_KEY: process.env.GROQ_API_KEY,
     NEXT_PUBLIC_BIGDATA_CLOUD_API_KEY:
       process.env.NEXT_PUBLIC_BIGDATA_CLOUD_API_KEY,
     NODE_ENV: process.env.NODE_ENV,
