@@ -13,3 +13,21 @@ export async function getRandomQuote() {
     return "Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya. - QS. Al-Baqarah: 286";
   }
 }
+
+export async function getSpiritualGuidance(prompt: string) {
+  try {
+    const res = await fetch("/api/assistant", {
+      method: "POST",
+      body: JSON.stringify({ prompt: prompt }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) throw new Error("Network response was not ok");
+
+    const data = (await res.json()) as { answer: string };
+    return data.answer;
+  } catch (error) {
+    console.error("Error fetching quote from API:", error);
+    return "Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya. - QS. Al-Baqarah: 286";
+  }
+}
