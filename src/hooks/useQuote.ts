@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { getRandomQuote } from "../services/geminiService";
+import { useCompletion } from "@ai-sdk/react";
 import { STATIC_HIKMAH } from "../datas/data";
 import { parseQuote } from "../utils/quoteHelper";
 
@@ -7,44 +7,48 @@ const CACHE_KEY = "sabda_cached_quote";
 
 export const useQuote = () => {
   const isFetched = useRef(false);
-  const [loading, setLoading] = useState(false);
   const [quoteData, setQuoteData] = useState<{ text: string; source: string }>(
     () => {
+      if (typeof window !== "undefined") {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached)
+          return JSON.parse(cached) as { text: string; source: string };
+      }
       return (
         STATIC_HIKMAH[Math.floor(Math.random() * STATIC_HIKMAH.length)] ?? {
-          text: "Hati yang bersyukur adalah magnet bagi keajaiban.",
-          source: "Hikmah Sabda",
+          text: "Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya.",
+          source: "QS. Al-Baqarah: 286",
         }
       );
     },
   );
 
-  const fetchNewQuote = async (showLoading = true) => {
-    if (showLoading) setLoading(true);
-    try {
-      const rawQuote = await getRandomQuote();
-      const parsed = parseQuote(rawQuote);
+  const { completion, complete, isLoading } = useCompletion({
+    api: "/api/quote",
+    streamProtocol: "text",
+    onFinish: (prompt, result) => {
+      const parsed = parseQuote(result);
       setQuoteData(parsed);
       localStorage.setItem(CACHE_KEY, JSON.stringify(parsed));
-    } catch (error) {
-      console.error("Failed to fetch new quote:", error);
-    } finally {
-      setLoading(false);
-    }
+    },
+  });
+
+  const fetchNewQuote = async () => {
+    await complete("");
   };
 
   useEffect(() => {
     if (isFetched.current) return;
 
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      setQuoteData(JSON.parse(cached));
-    } else {
-      void fetchNewQuote(false);
-    }
-
     isFetched.current = true;
   }, []);
 
-  return { quoteData, loading, fetchNewQuote };
+  const displayQuote =
+    isLoading && completion ? parseQuote(completion) : quoteData;
+
+  return {
+    quoteData: displayQuote,
+    loading: isLoading,
+    fetchNewQuote,
+  };
 };

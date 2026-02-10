@@ -31,7 +31,7 @@ const QuoteSection: React.FC = () => {
               </span>
             </div>
             <button
-              onClick={() => fetchNewQuote(true)}
+              onClick={fetchNewQuote}
               disabled={loading}
               className={`rounded-xl p-2 text-slate-300 transition-all duration-500 hover:bg-emerald-50 hover:text-emerald-600 ${loading ? "animate-spin text-emerald-600" : "active:rotate-180"}`}
               title="Refresh Hikmah"
