@@ -10,12 +10,26 @@ const PrayerCard: React.FC = () => {
 
   if (loading || !data || !activePrayerInfo) {
     return (
-      <div className="prayer-card-gradient relative flex min-h-50 items-center justify-center overflow-hidden rounded-[2.5rem] p-7 text-white">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="animate-spin text-emerald-200" size={32} />
-          <p className="text-xs font-bold tracking-widest text-emerald-200/60 uppercase">
-            Menghitung Waktu...
-          </p>
+      <div className="prayer-card-gradient relative flex min-h-53.5 items-center justify-center overflow-hidden rounded-[2.5rem] p-7 text-white">
+        <div className="pointer-events-none absolute -right-5 -bottom-5 rotate-12 transform opacity-20">
+          <svg
+            width="240"
+            height="240"
+            viewBox="0 0 200 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="100"
+              cy="100"
+              r="80"
+              stroke="white"
+              strokeWidth="2"
+              strokeDasharray="10 10"
+            />
+            <circle cx="100" cy="100" r="60" stroke="white" strokeWidth="1" />
+            <path d="M100 20V180M20 100H180" stroke="white" strokeWidth="0.5" />
+          </svg>
         </div>
       </div>
     );

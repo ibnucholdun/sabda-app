@@ -101,3 +101,9 @@ export interface Parts {
     | null
     | undefined;
 }
+
+export interface CachedPrayer {
+  data: PrayerData;
+  coords: { lat: number; lng: number };
+  timestamp: string; // ISO Date string
+}
