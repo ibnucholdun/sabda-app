@@ -60,11 +60,11 @@ const PrayerCard: React.FC = () => {
       <div className="relative z-10 text-left">
         <div className="flex items-start justify-between">
           <div>
-            <h3 className="mb-1 text-sm font-black tracking-[0.2em] uppercase opacity-80">
+            <h3 className="mb-1 text-xs font-black tracking-[0.2em] uppercase opacity-80">
               Menuju {activePrayerInfo.name}
             </h3>
             <div className="flex items-baseline space-x-2">
-              <span className="text-6xl font-bold tracking-tighter tabular-nums">
+              <span className="text-4xl font-bold tracking-tighter tabular-nums">
                 {activePrayerInfo.time}
               </span>
               <span className="text-xl font-semibold text-emerald-200">
@@ -74,7 +74,7 @@ const PrayerCard: React.FC = () => {
           </div>
           <div className="flex flex-col items-end">
             <div className="text-right">
-              <p className="text-2xl font-bold tracking-tighter text-white tabular-nums">
+              <p className="text-xl font-bold tracking-tighter text-white tabular-nums">
                 {activePrayerInfo.countdown}
               </p>
               <p className="text-[10px] font-black tracking-widest text-emerald-300 uppercase opacity-80">
@@ -94,7 +94,7 @@ const PrayerCard: React.FC = () => {
             {data.hijri.day} {data.hijri.month.en} {data.hijri.year} H
           </p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/10 px-3 py-1 backdrop-blur-sm">
+        <div className="rounded-xl border border-white/10 bg-white/10 px-1 py-0.5 backdrop-blur-sm">
           <span className="text-[10px] font-black tracking-widest text-white/90 uppercase">
             Real-time Tracker
           </span>
