@@ -38,5 +38,9 @@
     "**/*.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "generated"]
+  "exclude": [
+    "node_modules",
+    "public/sw.js", // Tambahkan ini
+    "public/workbox-*.js"
+  ]
 }

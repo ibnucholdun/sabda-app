@@ -6,6 +6,8 @@ import { store, type RootState } from "../store/store";
 import LocationModal from "./LocationModal";
 import Header from "./Header";
 import { useLocationDetection } from "../hooks/useLocationDetection";
+import BottomNav from "./BottomNav";
+import AIAssistant from "./AIAssistant";
 
 const AppContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useLocationDetection();
@@ -18,8 +20,8 @@ const AppContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
-      {/* <AIAssistant />
-      <BottomNav /> */}
+      <AIAssistant />
+      <BottomNav />
     </div>
   );
 };

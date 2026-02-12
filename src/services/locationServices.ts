@@ -41,13 +41,12 @@ export const locationService = {
 
   // Search Geocode (Nama Tempat -> Koordinat)
   async searchGeocode(query: string): Promise<NominatimResult[]> {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
-    const res = await fetch(url, {
-      headers: {
-        "User-Agent": "SabdaApp",
-      },
-    });
+    const url = `/api/geocode?q=${encodeURIComponent(query)}`;
+
+    const res = await fetch(url);
+
     if (!res.ok) throw new Error("Gagal mencari koordinat");
+
     return res.json() as Promise<NominatimResult[]>;
   },
 };

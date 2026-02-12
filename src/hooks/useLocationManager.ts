@@ -55,7 +55,6 @@ export const useLocationManager = () => {
         },
         () => {
           dispatch(setIsLocating(false));
-          alert("Gagal mengakses lokasi.");
         },
       );
     }
