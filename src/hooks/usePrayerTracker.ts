@@ -75,7 +75,7 @@ export const usePrayerTracker = () => {
       }
     };
     void loadData();
-  }, [coords]);
+  }, [coords, data, loading]);
 
   const activePrayerInfo = useMemo(() => {
     if (!data) return null;
