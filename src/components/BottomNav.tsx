@@ -14,8 +14,8 @@ const BottomNav: React.FC = () => {
   };
 
   return (
-    <div className="pointer-events-none absolute right-0 bottom-0 left-0 z-50 flex justify-center px-4 pb-6">
-      <nav className="mb-safe pointer-events-auto flex w-full max-w-md items-center justify-between rounded-[2.5rem] border border-white bg-white/90 px-2 py-2 shadow-[0_15px_40px_rgba(0,0,0,0.15)] backdrop-blur-2xl">
+    <div className="pointer-events-none fixed right-0 bottom-0 left-0 z-50 mb-4 flex justify-center px-4 pb-[env(safe-area-inset-bottom,1.5rem)]">
+      <nav className="pointer-events-auto flex w-full max-w-md items-center justify-between rounded-[2.5rem] border border-white bg-white/90 px-2 py-2 shadow-[0_15px_40px_rgba(0,0,0,0.15)] backdrop-blur-2xl">
         {tabs.map((tab) => {
           const active = isActive(tab.path);
           const Icon = tab.icon;
