@@ -28,8 +28,6 @@ const ContentList = ({
     void loadSurahs();
   }, []);
 
-  console.log(surahs);
-
   const filteredSurahs = useMemo(() => {
     const searchTerm = searchQuery.toLowerCase();
 

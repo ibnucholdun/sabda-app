@@ -116,3 +116,27 @@ export interface Surah {
   numberOfAyahs: number;
   revelationType: string;
 }
+
+export interface Verse {
+  surahName: string;
+  id: number;
+  ar: string;
+  tr: string;
+  surahNumber: number;
+}
+
+export interface SurahDetail {
+  nomor: number;
+  nama: string;
+  namaLatin: string;
+  jumlahAyat: number;
+  tempatTurun: string;
+  arti: string;
+  verses: Verse[];
+}
+
+export interface JuzDetail {
+  juzNumber: number;
+  totalAyahs: number;
+  verses: Verse[];
+}
