@@ -29,7 +29,7 @@ const AIAssistant: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="mb-safe absolute right-6 bottom-36 z-40 animate-bounce cursor-pointer rounded-full bg-emerald-700 p-4 text-white shadow-2xl transition-all active:scale-90"
+          className="mb-safe absolute right-6 bottom-24 z-40 animate-bounce cursor-pointer rounded-full bg-emerald-700 p-4 text-white shadow-2xl transition-all active:scale-90"
         >
           <Sparkles size={24} />
         </button>
