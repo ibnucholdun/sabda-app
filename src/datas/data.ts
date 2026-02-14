@@ -10,7 +10,7 @@ import {
   Home,
   Settings,
 } from "lucide-react";
-import type { TopicItem } from "~/types/type";
+import type { Activity, TopicItem } from "~/types/type";
 
 export const feature = [
   {
@@ -55,7 +55,7 @@ export const feature = [
   },
   {
     id: "Ibadah",
-    path: "/ibadah",
+    path: "/ibadah-tracker",
     label: "Ibadah Tracker",
     icon: ClipboardCheck,
     color: "text-emerald-600",
@@ -143,7 +143,7 @@ export const tabs = [
   { id: "Al-Quran", path: "/al-quran", icon: BookOpen, label: "Al-Quran" },
   {
     id: "Ibadah",
-    path: "/ibadah",
+    path: "/ibadah-tracker",
     icon: ClipboardCheck,
     label: "Ibadah",
   },
@@ -305,3 +305,16 @@ export const JUZ_MAPPING: Record<number, string> = {
   29: "Al-Mulk: 1 - Al-Mursalat: 50",
   30: "An-Naba': 1 - An-Nas: 6",
 };
+
+export const permanentActivities: Activity[] = [
+  { id: "subuh", label: "Shalat Subuh", category: "Wajib", isPermanent: true },
+  { id: "zuhur", label: "Shalat Zuhur", category: "Wajib", isPermanent: true },
+  { id: "ashar", label: "Shalat Ashar", category: "Wajib", isPermanent: true },
+  {
+    id: "maghrib",
+    label: "Shalat Maghrib",
+    category: "Wajib",
+    isPermanent: true,
+  },
+  { id: "isya", label: "Shalat Isya", category: "Wajib", isPermanent: true },
+];
