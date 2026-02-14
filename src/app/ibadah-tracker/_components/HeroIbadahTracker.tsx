@@ -1,45 +1,21 @@
 import React from "react";
-import { permanentActivities } from "~/datas/data";
-import type { HistoricalData } from "~/types/type";
-import { getDateKey } from "~/utils/ibadahTrackerHelper";
+import type { Activity, HistoricalData } from "~/types/type";
 
 const HeroIbadahTracker = ({
-  history,
-  setHistory,
+  dayName,
+  dateNum,
+  monthName,
+  progress,
+  completedCount,
+  allActivities,
 }: {
-  history: HistoricalData;
-  setHistory: React.Dispatch<React.SetStateAction<HistoricalData>>;
+  dayName: string;
+  dateNum: number;
+  monthName: string;
+  progress: number;
+  completedCount: number;
+  allActivities: Activity[];
 }) => {
-  const today = new Date();
-  const dayName = new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(
-    today,
-  );
-  const dateNum = today.getDate();
-  const monthName = new Intl.DateTimeFormat("id-ID", { month: "short" }).format(
-    today,
-  );
-
-  const todayKey = getDateKey(new Date());
-
-  const todayRecord = history[todayKey] ?? {
-    activities: {},
-    customActivities: [],
-  };
-  const allActivities = [
-    ...permanentActivities,
-    ...(todayRecord.customActivities ?? []),
-  ];
-  const activitiesData = todayRecord.activities || {};
-
-  const completedCount = allActivities.filter(
-    (a) => activitiesData[a.id]?.completed,
-  ).length;
-
-  const progress =
-    allActivities.length > 0
-      ? (completedCount / allActivities.length) * 100
-      : 0;
-
   return (
     <div className="relative overflow-hidden rounded-[2.5rem] bg-emerald-800 p-8 text-white">
       <div className="relative z-10 text-left">
