@@ -7,7 +7,7 @@ import AlQuranVerseViewer from "../surah/[id]/_components/AlQuranVerseViewer";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { formatSurahName, toArabicDigits } from "~/utils/surahHelper";
 import { useParams } from "next/navigation";
-import type { SurahDetail } from "~/types/type";
+import type { SurahDetail, JuzDetail } from "~/types/type";
 import { AL_JUZ_AR } from "~/constant/alQuran";
 import { JUZ_MAPPING } from "~/datas/data";
 
@@ -15,7 +15,7 @@ const AlQuranReaderTemplate = ({
   data,
   type,
 }: {
-  data: SurahDetail | null;
+  data: SurahDetail | JuzDetail | null;
   type: "surah" | "juz";
 }) => {
   const params = useParams();
@@ -42,14 +42,14 @@ const AlQuranReaderTemplate = ({
   const isSurah = type === "surah";
 
   const toolbarTitle = isSurah
-    ? (data?.namaLatin ?? "Memuat Surah...")
+    ? ((data as SurahDetail)?.namaLatin ?? "Memuat Surah...")
     : `Juz ${id}`;
 
   const heroConfig = isSurah
     ? {
-        title: formatSurahName(data?.nama ?? ""),
-        subtitle: data?.arti ?? "",
-        description: `${data?.tempatTurun} - ${data?.jumlahAyat} Ayat`,
+        title: formatSurahName((data as SurahDetail)?.nama ?? ""),
+        subtitle: (data as SurahDetail)?.arti ?? "",
+        description: `${(data as SurahDetail)?.tempatTurun} - ${(data as SurahDetail)?.jumlahAyat} Ayat`,
       }
     : {
         title: `${AL_JUZ_AR} ${toArabicDigits(id)}`,

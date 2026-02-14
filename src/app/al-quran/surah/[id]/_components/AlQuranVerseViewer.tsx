@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { BISMILLAH } from "~/constant/alQuran";
-import type { SurahDetail } from "~/types/type";
+import type { SurahDetail, JuzDetail } from "~/types/type";
 import { toArabicDigits } from "~/utils/surahHelper";
 import VersesCard from "./VersesCard";
 
@@ -13,7 +13,7 @@ const AlQuranVerseViewer = memo(
     showTranslation,
     viewMode,
   }: {
-    data: SurahDetail | null;
+    data: SurahDetail | JuzDetail | null;
     type: "surah" | "juz";
     // setCurrentVerseIndex: (index: number) => void;
     onRegisterVerseRef: (
@@ -51,7 +51,8 @@ const AlQuranVerseViewer = memo(
                             Surah
                           </p>
                           <h4 className="text-sm font-black tracking-tight text-slate-800">
-                            {verse.surahName ?? data?.namaLatin}
+                            {verse.surahName ??
+                              (data as SurahDetail)?.namaLatin}
                           </h4>
                         </div>
 
