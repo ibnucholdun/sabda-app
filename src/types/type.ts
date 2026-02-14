@@ -153,12 +153,11 @@ export interface ActivityStatus {
   note?: string;
 }
 
-export type HistoricalData = Record<
-  string,
-  {
-    activities: Record<string, ActivityStatus>;
-    customActivities?: Activity[];
-    reflection?: string;
-    aiResponse?: string;
-  }
->;
+export interface DailyIbadahRecord {
+  activities: Record<string, ActivityStatus>;
+  customActivities?: Activity[];
+  reflection?: string;
+  aiResponse?: string;
+}
+
+export type HistoricalData = Record<string, DailyIbadahRecord>;

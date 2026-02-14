@@ -7,7 +7,7 @@ import {
   Trash2,
 } from "lucide-react";
 import React from "react";
-import type { Activity } from "~/types/type";
+import type { Activity, ActivityStatus } from "~/types/type";
 
 const ListIbadah = ({
   allActivities,
@@ -19,7 +19,7 @@ const ListIbadah = ({
   setEditingNoteId,
 }: {
   allActivities: Activity[];
-  activitiesData: Record<string, { completed: boolean; note: string }>;
+  activitiesData: Record<string, ActivityStatus>;
   editingNoteId: string | null;
   toggleIbadah: (id: string) => void;
   removeCustomActivity: (id: string, e: React.MouseEvent) => void;
@@ -98,7 +98,7 @@ const ListIbadah = ({
                 <textarea
                   autoFocus
                   placeholder="Catatan hari ini..."
-                  value={status.note}
+                  value={status.note ?? ""}
                   onChange={(e) => updateNote(activity.id, e.target.value)}
                   className="min-h-20 w-full resize-none rounded-2xl border border-slate-100 bg-slate-50 p-4 text-xs font-medium focus:ring-1 focus:ring-emerald-500/30"
                 />
