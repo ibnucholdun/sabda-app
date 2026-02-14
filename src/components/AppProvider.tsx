@@ -13,7 +13,7 @@ const AppContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useLocationDetection();
   const { isModalOpen } = useSelector((state: RootState) => state.location);
   return (
-    <div className="relative mx-auto flex h-screen max-w-md flex-col overflow-hidden bg-white shadow-2xl">
+    <div className="relative mx-auto flex h-dvh max-w-md flex-col overflow-hidden bg-white shadow-2xl">
       {isModalOpen && <LocationModal />}
       <Header />
       <main className="scrollbar-hide flex-1 overflow-y-auto scroll-smooth bg-slate-50/50 px-4 pt-4 pb-32">
