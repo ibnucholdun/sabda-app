@@ -41,6 +41,10 @@
   .mb-safe {
     margin-bottom: env(safe-area-inset-bottom);
   }
+
+  .hide-tr .translation-section {
+    display: none !important;
+  }
 }
 
 @theme {
