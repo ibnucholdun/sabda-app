@@ -1,7 +1,7 @@
 import React from "react";
 import FormCustomIbadah from "./FormCustomIbadah";
 import ListIbadah from "./ListIbadah";
-import type { Activity } from "~/types/type";
+import type { Activity, ActivityStatus } from "~/types/type";
 
 const ListIbadahView = ({
   addCustomActivity,
@@ -19,7 +19,7 @@ const ListIbadahView = ({
   newActivityName: string;
   setNewActivityName: (name: string) => void;
   allActivities: Activity[];
-  activitiesData: any;
+  activitiesData: Record<string, ActivityStatus>;
   editingNoteId: string | null;
   toggleIbadah: (id: string) => void;
   removeCustomActivity: (id: string, e: React.MouseEvent) => void;

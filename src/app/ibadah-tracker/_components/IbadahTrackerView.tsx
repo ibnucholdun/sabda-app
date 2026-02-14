@@ -8,6 +8,8 @@ import { getDateKey } from "~/utils/ibadahTrackerHelper";
 import { permanentActivities } from "~/datas/data";
 import localforage from "~/lib/localforage";
 import TrackerSkeleton from "./TrackerSkeleton";
+import MuhasabahSection from "./MuhasabahSection";
+import { useCompletion } from "@ai-sdk/react";
 
 const IbadahTrackerView = () => {
   const [history, setHistory] = useState<HistoricalData>({});
@@ -136,6 +138,41 @@ const IbadahTrackerView = () => {
     });
   };
 
+  const {
+    completion,
+    complete,
+    isLoading: isGeneratingAI,
+  } = useCompletion({
+    api: "/api/muhasabah",
+    streamProtocol: "text",
+    onFinish: (_prompt, result) => {
+      setHistory((prev) => {
+        const dayData = prev[todayKey] ?? {
+          activities: {},
+          customActivities: [],
+        };
+
+        return {
+          ...prev,
+          [todayKey]: {
+            ...dayData,
+            aiResponse: result,
+          },
+        };
+      });
+    },
+  });
+
+  const handleGetAIReflectionRespon = async () => {
+    const currentReflection = history[todayKey]?.reflection ?? "";
+
+    try {
+      await complete(currentReflection);
+    } catch (err) {
+      console.error("Grok Error:", err);
+    }
+  };
+
   useEffect(() => {
     const initData = async () => {
       try {
@@ -180,6 +217,14 @@ const IbadahTrackerView = () => {
         removeCustomActivity={removeCustomActivity}
         updateNote={updateNote}
         setEditingNoteId={setEditingNoteId}
+      />
+
+      <MuhasabahSection
+        todayRecord={todayRecord}
+        todayKey={todayKey}
+        setHistory={setHistory}
+        handleGetAIReflectionRespon={handleGetAIReflectionRespon}
+        isGeneratingAI={isGeneratingAI}
       />
     </div>
   );
