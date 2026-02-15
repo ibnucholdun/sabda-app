@@ -140,3 +140,45 @@ export interface JuzDetail {
   totalAyahs: number;
   verses: Verse[];
 }
+
+export interface Activity {
+  id: string;
+  label: string;
+  category: "Wajib" | "Sunnah" | "Daily" | "Kustom";
+  isPermanent?: boolean;
+}
+
+export interface ActivityStatus {
+  completed: boolean;
+  note?: string;
+}
+
+export interface DailyIbadahRecord {
+  activities: Record<string, ActivityStatus>;
+  customActivities?: Activity[];
+  reflection?: string;
+  aiResponse?: string;
+}
+
+export type HistoricalData = Record<string, DailyIbadahRecord>;
+
+export interface DayDetail {
+  day: number;
+  month: number;
+  year: number;
+  percentage: number;
+  activities: {
+    label: string;
+    completed: boolean;
+    category: string;
+    note?: string;
+  }[];
+  reflection?: string;
+  aiResponse?: string;
+}
+
+export interface ToastState {
+  message: string;
+  type: "success" | "error" | "info";
+  visible: boolean;
+}
