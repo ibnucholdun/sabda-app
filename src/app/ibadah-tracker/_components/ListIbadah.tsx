@@ -6,7 +6,7 @@ import {
   Save,
   Trash2,
 } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { Activity, ActivityStatus } from "~/types/type";
 
 const ListIbadah = ({
@@ -26,6 +26,15 @@ const ListIbadah = ({
   updateNote: (id: string, note: string) => void;
   setEditingNoteId: React.Dispatch<React.SetStateAction<string | null>>;
 }) => {
+  const [localNote, setLocalNote] = useState("");
+
+  useEffect(() => {
+    if (editingNoteId) {
+      const note = activitiesData[editingNoteId]?.note ?? "";
+      setLocalNote(note);
+    }
+  }, [editingNoteId]);
+
   return (
     <div className="space-y-3">
       <p className="mb-1 px-2 text-left text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
@@ -98,12 +107,15 @@ const ListIbadah = ({
                 <textarea
                   autoFocus
                   placeholder="Catatan hari ini..."
-                  value={status.note ?? ""}
-                  onChange={(e) => updateNote(activity.id, e.target.value)}
+                  value={localNote}
+                  onChange={(e) => setLocalNote(e.target.value)}
                   className="min-h-20 w-full resize-none rounded-2xl border border-slate-100 bg-slate-50 p-4 text-xs font-medium focus:ring-1 focus:ring-emerald-500/30"
                 />
                 <button
-                  onClick={() => setEditingNoteId(null)}
+                  onClick={() => {
+                    updateNote(activity.id, localNote);
+                    setEditingNoteId(null);
+                  }}
                   className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-xl bg-emerald-800 p-2 text-white shadow-lg"
                 >
                   <Save size={14} />

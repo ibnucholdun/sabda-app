@@ -161,3 +161,18 @@ export interface DailyIbadahRecord {
 }
 
 export type HistoricalData = Record<string, DailyIbadahRecord>;
+
+export interface DayDetail {
+  day: number;
+  month: number;
+  year: number;
+  percentage: number;
+  activities: {
+    label: string;
+    completed: boolean;
+    category: string;
+    note?: string;
+  }[];
+  reflection?: string;
+  aiResponse?: string;
+}

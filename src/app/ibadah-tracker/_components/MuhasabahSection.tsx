@@ -1,5 +1,7 @@
+"use client";
+
 import { PenLine, RefreshCw, Sparkles } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { DailyIbadahRecord, HistoricalData } from "~/types/type";
 
 const MuhasabahSection = ({
@@ -15,6 +17,24 @@ const MuhasabahSection = ({
   handleGetAIReflectionRespon: () => void;
   isGeneratingAI: boolean;
 }) => {
+  const [localReflection, setLocalReflection] = useState(
+    todayRecord.reflection ?? "",
+  );
+
+  useEffect(() => {
+    setLocalReflection(todayRecord.reflection ?? "");
+  }, [todayRecord.reflection]);
+
+  const saveToHistory = (value: string) => {
+    setHistory((prev) => ({
+      ...prev,
+      [todayKey]: {
+        ...(prev[todayKey] ?? { activities: {} }),
+        reflection: value,
+      },
+    }));
+  };
+
   return (
     <div className="space-y-4 rounded-[2.5rem] border border-indigo-100 bg-indigo-50/50 p-6">
       <div className="flex items-center justify-between px-1">
@@ -44,16 +64,9 @@ const MuhasabahSection = ({
       </div>
       <textarea
         placeholder="Tulis refleksi jiwamu hari ini..."
-        value={todayRecord.reflection ?? ""}
-        onChange={(e) =>
-          setHistory((prev) => ({
-            ...prev,
-            [todayKey]: {
-              ...(prev[todayKey] ?? { activities: {} }),
-              reflection: e.target.value,
-            },
-          }))
-        }
+        value={localReflection}
+        onChange={(e) => setLocalReflection(e.target.value)}
+        onBlur={(e) => saveToHistory(e.target.value)}
         className="min-h-35 w-full resize-none rounded-4xl border border-indigo-100 bg-white p-5 text-sm font-medium focus:ring-2 focus:ring-indigo-200"
       />
       {todayRecord.aiResponse && (
