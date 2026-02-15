@@ -1,68 +1,48 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import TitleSelector from "./TitleSelector";
-import { tasbihStore } from "~/lib/localforage";
 import ButtonTasbih from "./ButtonTasbih";
 import ResetButton from "./ResetButton";
+import SettingTasbih from "./SettingTasbih";
+import { useTasbih } from "~/hooks/useTasbih";
 
 const TasbihView = () => {
-  const [tasbihTitle, setTasbihTitle] = useState("Subhanallah");
-  const [tasbihCount, setTasbihCount] = useState(0);
-  const [tasbihLimit, setTasbihLimit] = useState(33);
-
-  const [isDzikirModalOpen, setIsDzikirModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const progress = (tasbihCount / tasbihLimit) * 100;
-  const isFull = tasbihCount === tasbihLimit;
-
-  const handleTasbihClick = () => {
-    setTasbihCount((prev) => {
-      const nextValue = prev + 1;
-      if (nextValue > tasbihLimit) {
-        return 1;
-      }
-      return nextValue;
-    });
-  };
-
-  const handleTasbihReset = (e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setTasbihCount(0);
-  };
-
-  useEffect(() => {
-    const initData = async () => {
-      try {
-        const savedTasbihTitle =
-          await tasbihStore.getItem<string>("tasbih_title");
-        if (savedTasbihTitle) setTasbihTitle(savedTasbihTitle);
-      } catch (err) {
-        console.error("Error loading data", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    void initData();
-  }, []);
+  const { state, actions } = useTasbih();
 
   return (
     <div className="animate-in zoom-in-95 flex flex-col items-center justify-center space-y-8 py-8 duration-500">
       <TitleSelector
-        tasbihTitle={tasbihTitle}
-        setIsDzikirModalOpen={setIsDzikirModalOpen}
+        tasbihTitle={state.tasbihTitle}
+        setIsDzikirModalOpen={actions.setIsDzikirModalOpen}
       />
 
       <ButtonTasbih
-        tasbihCount={tasbihCount}
-        tasbihLimit={tasbihLimit}
-        progress={progress}
-        isFull={isFull}
-        handleTasbihClick={handleTasbihClick}
+        tasbihCount={state.tasbihCount}
+        tasbihLimit={state.tasbihLimit}
+        progress={state.progress}
+        isFull={state.isFull}
+        handleTasbihClick={actions.handleTasbihClick}
       />
 
-      <ResetButton handleTasbihReset={handleTasbihReset} />
+      <ResetButton handleTasbihReset={actions.handleTasbihReset} />
+
+      {state.isDzikirModalOpen && (
+        <SettingTasbih
+          isDzikirModalOpen={state.isDzikirModalOpen}
+          setIsDzikirModalOpen={actions.setIsDzikirModalOpen}
+          tasbihTitle={state.tasbihTitle}
+          setTasbihTitle={actions.setTasbihTitle}
+          tasbihLimit={state.tasbihLimit}
+          setTasbihLimit={actions.setTasbihLimit}
+          customLimit={state.customLimit}
+          setCustomLimit={actions.setCustomLimit}
+          customDzikir={state.customDzikir}
+          setCustomDzikir={actions.setCustomDzikir}
+          saveCustomLimit={actions.saveCustomLimit}
+          saveCustomDzikir={actions.saveCustomDzikir}
+          dzikirList={state.dzikirList}
+        />
+      )}
     </div>
   );
 };
