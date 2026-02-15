@@ -1,5 +1,5 @@
 import React from "react";
-import type { Activity, HistoricalData } from "~/types/type";
+import type { Activity } from "~/types/type";
 
 const HeroIbadahTracker = ({
   dayName,
@@ -17,17 +17,17 @@ const HeroIbadahTracker = ({
   allActivities: Activity[];
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-[2.5rem] bg-emerald-800 p-8 text-white">
+    <div className="relative overflow-hidden rounded-[2.5rem] bg-emerald-800 p-5 text-white">
       <div className="relative z-10 text-left">
-        <div className="mb-1 flex items-start justify-between">
+        <div className="mb-0.5 flex items-start justify-between">
           <h3 className="text-2xl font-black">Ibadah Tracker</h3>
-          <div className="rounded-2xl border border-white/10 bg-white/10 px-3 py-1.5">
+          <div className="rounded-2xl border border-white/10 bg-white/10 px-2 py-1">
             <span className="text-[9px] font-black tracking-tighter uppercase">
               {dayName}, {dateNum} {monthName}
             </span>
           </div>
         </div>
-        <p className="mb-6 text-xs font-bold tracking-widest text-emerald-300 uppercase">
+        <p className="mb-6 text-xs font-bold tracking-widest text-emerald-300">
           Target Fleksibel Harian
         </p>
         <div className="mb-2 flex items-end justify-between">

@@ -9,19 +9,19 @@ const DetailHistoryPerDay = ({
   selectedDayDetail: any;
 }) => {
   return (
-    <div className="fixed inset-0 z-120 flex items-end justify-center px-4 pb-6">
+    <div className="fixed inset-0 z-120 flex items-end justify-center px-3 pb-6">
       <div
         className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
         onClick={() => setSelectedDayDetail(null)}
       ></div>
       <div className="relative flex h-[80vh] w-full max-w-md flex-col overflow-hidden rounded-[3rem] bg-white text-left shadow-2xl">
         <div className="mx-auto my-4 h-1.5 w-12 flex-none rounded-full bg-slate-200"></div>
-        <div className="flex items-start justify-between px-8 pb-4">
+        <div className="flex items-start justify-between px-5 pb-4">
           <div>
             <p className="mb-1 text-[10px] font-black text-emerald-600 uppercase">
               Arsip Riwayat
             </p>
-            <h5 className="text-2xl leading-tight font-black text-slate-900">
+            <h5 className="text-xl leading-tight font-black text-slate-900">
               {selectedDayDetail.day}{" "}
               {new Intl.DateTimeFormat("id-ID", {
                 month: "long",
@@ -30,7 +30,7 @@ const DetailHistoryPerDay = ({
                 new Date(selectedDayDetail.year, selectedDayDetail.month),
               )}
             </h5>
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-2 flex items-center gap-3">
               <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-100">
                 <div
                   className="h-full bg-emerald-500"
@@ -49,10 +49,10 @@ const DetailHistoryPerDay = ({
             <X size={20} />
           </button>
         </div>
-        <div className="scrollbar-hide flex-1 space-y-6 overflow-y-auto px-8 pb-24">
+        <div className="scrollbar-hide flex-1 space-y-6 overflow-y-auto px-5 pb-24">
           {selectedDayDetail.reflection && (
-            <div className="rounded-4xl border border-indigo-100 bg-indigo-50/70 p-5">
-              <p className="mb-3 text-[10px] font-black text-indigo-600 uppercase">
+            <div className="rounded-4xl border border-indigo-100 bg-indigo-50/70 p-4">
+              <p className="mb-2 text-xs font-black text-indigo-600 uppercase">
                 Refleksi Diri
               </p>
               <p className="text-sm font-medium text-slate-700 italic">
@@ -112,10 +112,10 @@ const DetailHistoryPerDay = ({
             ))}
           </div>
         </div>
-        <div className="bg-white p-6">
+        <div className="bg-white p-5 py-4">
           <button
             onClick={() => setSelectedDayDetail(null)}
-            className="w-full rounded-2xl bg-emerald-800 py-5 text-xs font-black text-white uppercase shadow-xl transition-all active:scale-95"
+            className="w-full rounded-2xl bg-emerald-800 py-4 text-xs font-black text-white uppercase shadow-xl transition-all active:scale-95"
           >
             Tutup Riwayat
           </button>

@@ -11,7 +11,7 @@ const MuhasabahSection = ({
   handleGetAIReflectionRespon,
   isGeneratingAI,
 }: {
-  todayRecord: DailyIbadahRecord; // Changed from HistoricalData
+  todayRecord: DailyIbadahRecord;
   todayKey: string;
   setHistory: React.Dispatch<React.SetStateAction<HistoricalData>>;
   handleGetAIReflectionRespon: () => void;
@@ -36,7 +36,7 @@ const MuhasabahSection = ({
   };
 
   return (
-    <div className="space-y-4 rounded-[2.5rem] border border-indigo-100 bg-indigo-50/50 p-6">
+    <div className="space-y-4 rounded-[2.5rem] border border-indigo-100 bg-indigo-50/50 px-4 py-6">
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-3">
           <div className="rounded-xl bg-indigo-600 p-2 text-white">
@@ -44,7 +44,7 @@ const MuhasabahSection = ({
           </div>
           <div className="text-left">
             <h4 className="text-sm font-black text-indigo-900">Muhasabah</h4>
-            <p className="mt-1 text-[10px] leading-none font-bold tracking-widest text-indigo-400 uppercase">
+            <p className="mt-1 text-[10px] leading-none font-bold tracking-widest text-indigo-400">
               Refleksi Harian
             </p>
           </div>
@@ -52,7 +52,7 @@ const MuhasabahSection = ({
         <button
           onClick={handleGetAIReflectionRespon}
           disabled={isGeneratingAI}
-          className="flex items-center gap-2 rounded-xl border bg-white px-3 py-2 text-[10px] font-bold tracking-wider text-indigo-700 uppercase shadow-sm active:scale-95"
+          className="flex items-center gap-2 rounded-xl border bg-white px-2 py-1 text-[10px] font-bold tracking-wider text-indigo-700 shadow-sm active:scale-95"
         >
           {isGeneratingAI ? (
             <RefreshCw size={12} className="animate-spin" />

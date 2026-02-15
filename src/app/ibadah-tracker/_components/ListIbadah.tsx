@@ -49,7 +49,7 @@ const ListIbadah = ({
         return (
           <div
             key={activity.id}
-            className={`flex flex-col gap-3 rounded-[1.75rem] border bg-white p-5 transition-all ${status.completed ? "border-emerald-200 bg-emerald-50/30" : "border-slate-100 shadow-sm"}`}
+            className={`flex flex-col gap-3 rounded-[1.75rem] border bg-white p-4 transition-all ${status.completed ? "border-emerald-200 bg-emerald-50/30" : "border-slate-100 shadow-sm"}`}
           >
             <div className="flex items-center gap-4 text-left">
               <div
@@ -62,7 +62,10 @@ const ListIbadah = ({
                   <Circle className="text-slate-200" size={24} />
                 )}
               </div>
-              <div className="flex-1" onClick={() => toggleIbadah(activity.id)}>
+              <div
+                className="min-w-0 flex-1"
+                onClick={() => toggleIbadah(activity.id)}
+              >
                 <p
                   className={`text-sm font-bold ${status.completed ? "text-emerald-900" : "text-slate-700"}`}
                 >
@@ -78,29 +81,32 @@ const ListIbadah = ({
                     {activity.category}
                   </p>
                   {status.note && (
-                    <span className="max-w-35 truncate text-[9px] font-medium text-amber-600/80 italic">
+                    <span className="truncate text-[9px] font-medium text-amber-600/80 italic">
                       • {status.note}
                     </span>
                   )}
                 </div>
               </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditingNoteId(isEditing ? null : activity.id);
-                }}
-                className={`rounded-xl p-2 active:scale-90 ${isEditing ? "bg-emerald-700 text-white" : status.note ? "bg-amber-50 text-amber-500" : "text-slate-300"}`}
-              >
-                <MessageSquareText size={18} />
-              </button>
-              {!activity.isPermanent && (
+
+              <div className="flex shrink-0 items-center gap-1">
                 <button
-                  onClick={(e) => removeCustomActivity(activity.id, e)}
-                  className="p-2 text-slate-300 active:text-red-500"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingNoteId(isEditing ? null : activity.id);
+                  }}
+                  className={`rounded-xl p-1.5 active:scale-90 ${isEditing ? "bg-emerald-700 text-white" : status.note ? "bg-amber-50 text-amber-500" : "text-slate-300"}`}
                 >
-                  <Trash2 size={18} />
+                  <MessageSquareText size={18} />
                 </button>
-              )}
+                {!activity.isPermanent && (
+                  <button
+                    onClick={(e) => removeCustomActivity(activity.id, e)}
+                    className="p-1.5 text-slate-300 active:text-red-500"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                )}
+              </div>
             </div>
             {isEditing && (
               <div className="relative mt-1">

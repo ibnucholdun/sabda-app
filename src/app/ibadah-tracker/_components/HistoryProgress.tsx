@@ -51,7 +51,7 @@ const HistoryProgress = ({
   }, [monthData]);
 
   return (
-    <div className="relative space-y-6 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-white p-6 pb-8 shadow-sm">
+    <div className="relative space-y-6 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-white p-4 pb-8 shadow-sm">
       <div className="flex items-center justify-between px-2">
         <div className="flex items-center gap-2">
           <BarChart3 size={18} className="text-emerald-600" />
