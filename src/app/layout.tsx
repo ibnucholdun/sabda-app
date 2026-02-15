@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 
 import { type Metadata, type Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Outfit } from "next/font/google";
 import AppProvider from "~/components/AppProvider";
 
 export const metadata: Metadata = {
@@ -32,16 +32,16 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const geist = Geist({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-outfit-sans",
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html lang="en" className={`${outfit.variable}`}>
       <body className="islamic-pattern bg-[#f1f5f9] pt-[env(safe-area-inset-top)] antialiased">
         <AppProvider>{children}</AppProvider>
       </body>

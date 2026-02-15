@@ -1,2 +1,0 @@
-selectedjuz === id
-selectedsurah ==== detailsurah
