@@ -182,3 +182,17 @@ export interface ToastState {
   type: "success" | "error" | "info";
   visible: boolean;
 }
+
+export interface CalendarDay {
+  gregorianDay: number;
+  date: Date;
+  hijriDay: string;
+  hijriMonth: string;
+  hijriYear: string;
+  pasaran: string;
+  isToday: boolean;
+  isCurrentMonth: boolean;
+  isHoliday: boolean;
+  holidayName?: string;
+  islamicEvents: string[];
+}
