@@ -8,7 +8,7 @@ import type {
   Activity,
 } from "~/types/type";
 import { useCompletion } from "@ai-sdk/react";
-import localforage from "~/lib/localforage";
+import { ibadahStore } from "~/lib/localforage";
 
 export const useIbadahTracker = () => {
   const [history, setHistory] = useState<HistoricalData>({});
@@ -268,7 +268,7 @@ export const useIbadahTracker = () => {
 
   const handleExportData = useCallback(async () => {
     try {
-      const fullHistory = await localforage.getItem("ibadah_history");
+      const fullHistory = await ibadahStore.getItem("ibadah_history");
       const backupData = {
         app: "Sabda",
         date: new Date().toISOString(),
@@ -299,7 +299,7 @@ export const useIbadahTracker = () => {
           const content = event.target?.result as string;
           const backup = JSON.parse(content);
           if (backup.app !== "Sabda") throw new Error();
-          await localforage.setItem("ibadah_history", backup.data);
+          await ibadahStore.setItem("ibadah_history", backup.data);
           setHistory(backup.data);
           showToast("Data dipulihkan!");
         } catch (err) {
@@ -314,7 +314,7 @@ export const useIbadahTracker = () => {
 
   const handleResetData = useCallback(async () => {
     setIsResetModalOpen(false);
-    await localforage.removeItem("ibadah_history");
+    await ibadahStore.removeItem("ibadah_history");
     setHistory({});
     showToast("Data direset", "info");
   }, [showToast]);
@@ -323,7 +323,7 @@ export const useIbadahTracker = () => {
     const initData = async () => {
       try {
         const savedHistory =
-          await localforage.getItem<HistoricalData>("ibadah_history");
+          await ibadahStore.getItem<HistoricalData>("ibadah_history");
         if (savedHistory) setHistory(savedHistory);
       } catch (err) {
         console.error("Error loading data", err);
@@ -336,7 +336,7 @@ export const useIbadahTracker = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      void localforage.setItem("ibadah_history", history);
+      void ibadahStore.setItem("ibadah_history", history);
     }
   }, [history, isLoading]);
 
