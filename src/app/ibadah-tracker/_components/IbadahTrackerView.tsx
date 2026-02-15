@@ -15,7 +15,6 @@ import DetailHistoryPerDay from "./DetailHistoryPerDay";
 
 const IbadahTrackerView = () => {
   const [history, setHistory] = useState<HistoricalData>({});
-  const [newActivityName, setNewActivityName] = useState("");
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [viewDate, setViewDate] = useState(new Date());
@@ -53,13 +52,12 @@ const IbadahTrackerView = () => {
       ? (completedCount / allActivities.length) * 100
       : 0;
 
-  const addCustomActivity = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newActivityName.trim()) return;
+  const addCustomActivity = (name: string) => {
+    if (!name.trim()) return;
 
     const newAct: Activity = {
       id: Date.now().toString(),
-      label: newActivityName,
+      label: name,
       category: "Kustom",
     };
 
@@ -77,7 +75,6 @@ const IbadahTrackerView = () => {
         },
       };
     });
-    setNewActivityName("");
   };
 
   const toggleIbadah = (id: string) => {
@@ -271,8 +268,6 @@ const IbadahTrackerView = () => {
         allActivities={allActivities}
         activitiesData={activitiesData}
         addCustomActivity={addCustomActivity}
-        newActivityName={newActivityName}
-        setNewActivityName={setNewActivityName}
         editingNoteId={editingNoteId}
         toggleIbadah={toggleIbadah}
         removeCustomActivity={removeCustomActivity}

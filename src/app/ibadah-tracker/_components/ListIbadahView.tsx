@@ -5,8 +5,6 @@ import type { Activity, ActivityStatus } from "~/types/type";
 
 const ListIbadahView = ({
   addCustomActivity,
-  newActivityName,
-  setNewActivityName,
   allActivities,
   activitiesData,
   editingNoteId,
@@ -15,9 +13,7 @@ const ListIbadahView = ({
   updateNote,
   setEditingNoteId,
 }: {
-  addCustomActivity: (e: React.FormEvent) => void;
-  newActivityName: string;
-  setNewActivityName: (name: string) => void;
+  addCustomActivity: (name: string) => void;
   allActivities: Activity[];
   activitiesData: Record<string, ActivityStatus>;
   editingNoteId: string | null;
@@ -28,11 +24,7 @@ const ListIbadahView = ({
 }) => {
   return (
     <>
-      <FormCustomIbadah
-        addCustomActivity={addCustomActivity}
-        newActivityName={newActivityName}
-        setNewActivityName={setNewActivityName}
-      />
+      <FormCustomIbadah addCustomActivityParent={addCustomActivity} />
       <ListIbadah
         allActivities={allActivities}
         activitiesData={activitiesData}
