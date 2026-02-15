@@ -2,7 +2,12 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import HeroIbadahTracker from "./HeroIbadahTracker";
-import type { Activity, DayDetail, HistoricalData } from "~/types/type";
+import type {
+  Activity,
+  DayDetail,
+  HistoricalData,
+  ToastState,
+} from "~/types/type";
 import ListIbadahView from "./ListIbadahView";
 import { getDateKey } from "~/utils/ibadahTrackerHelper";
 import { permanentActivities } from "~/datas/data";
@@ -12,6 +17,9 @@ import MuhasabahSection from "./MuhasabahSection";
 import { useCompletion } from "@ai-sdk/react";
 import HistoryProgress from "./HistoryProgress";
 import DetailHistoryPerDay from "./DetailHistoryPerDay";
+import DataManagement from "./DataManagement";
+import ModalResetData from "./ModalResetData";
+import ToasView from "./ToasView";
 
 const IbadahTrackerView = () => {
   const [history, setHistory] = useState<HistoricalData>({});
@@ -21,6 +29,13 @@ const IbadahTrackerView = () => {
   const [selectedDayDetail, setSelectedDayDetail] = useState<DayDetail | null>(
     null,
   );
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+
+  const [toast, setToast] = useState<ToastState>({
+    message: "",
+    type: "success",
+    visible: false,
+  });
 
   const today = new Date();
   const dayName = new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(
@@ -231,6 +246,66 @@ const IbadahTrackerView = () => {
     });
   };
 
+  const showToast = (
+    message: string,
+    type: "success" | "error" | "info" = "success",
+  ) => {
+    setToast({ message, type, visible: true });
+    setTimeout(() => {
+      setToast((prev) => ({ ...prev, visible: false }));
+    }, 3000);
+  };
+
+  const handleExportData = async () => {
+    try {
+      const fullHistory = await localforage.getItem("ibadah_history");
+      const backupData = {
+        app: "Sabda",
+        date: new Date().toISOString(),
+        data: fullHistory,
+      };
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `sabda_backup_${getDateKey(new Date())}.json`;
+      link.click();
+      showToast("Data berhasil diekspor!");
+    } catch (e) {
+      console.log(e);
+      showToast("Gagal ekspor", "error");
+    }
+  };
+
+  const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        const content = event.target?.result as string;
+        const backup = JSON.parse(content);
+        if (backup.app !== "Sabda") throw new Error();
+        await localforage.setItem("ibadah_history", backup.data);
+        setHistory(backup.data);
+        showToast("Data dipulihkan!");
+      } catch (err) {
+        console.log(err);
+        showToast("Gagal impor", "error");
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const handleResetData = async () => {
+    setIsResetModalOpen(false);
+    await localforage.removeItem("ibadah_history");
+    setHistory({});
+    showToast("Data direset", "info");
+  };
+
   useEffect(() => {
     const initData = async () => {
       try {
@@ -256,6 +331,14 @@ const IbadahTrackerView = () => {
 
   return (
     <div className="animate-in slide-in-from-bottom-4 space-y-6 pb-12 duration-500">
+      {toast.visible && <ToasView toast={toast} />}
+
+      {isResetModalOpen && (
+        <ModalResetData
+          setIsResetModalOpen={setIsResetModalOpen}
+          handleResetData={handleResetData}
+        />
+      )}
       <HeroIbadahTracker
         dayName={dayName}
         dateNum={dateNum}
@@ -288,6 +371,12 @@ const IbadahTrackerView = () => {
         viewMonthName={`${viewDate.toLocaleString("id-ID", { month: "short" })} ${viewDate.getFullYear()}`}
         monthData={monthData}
         handleDayClick={handleDayClick}
+      />
+
+      <DataManagement
+        handleExportData={handleExportData}
+        handleImportData={handleImportData}
+        setIsResetModalOpen={setIsResetModalOpen}
       />
 
       {selectedDayDetail && (

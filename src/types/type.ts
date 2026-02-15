@@ -176,3 +176,9 @@ export interface DayDetail {
   reflection?: string;
   aiResponse?: string;
 }
+
+export interface ToastState {
+  message: string;
+  type: "success" | "error" | "info";
+  visible: boolean;
+}
