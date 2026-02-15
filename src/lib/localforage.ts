@@ -1,8 +1,11 @@
 import localforage from "localforage";
 
-localforage.config({
+export const ibadahStore = localforage.createInstance({
   name: "Sabda-app",
   storeName: "ibadah_tracker",
 });
 
-export default localforage;
+export const tasbihStore = localforage.createInstance({
+  name: "Sabda-app",
+  storeName: "tasbih_data",
+});
